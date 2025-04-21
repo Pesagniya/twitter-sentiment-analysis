@@ -6,8 +6,8 @@ import numpy as np
 from utils import save_results_to_csv
 
 
-TRAIN_PROCESSED_FILE = '../train-processed.csv'
-TEST_PROCESSED_FILE = '../test-processed.csv'
+TRAIN_PROCESSED_FILE = '../.././archive/train-processed.csv'
+TEST_PROCESSED_FILE = '../.././archive/test-processed.csv'
 USE_BIGRAMS = False
 TRAIN = True
 
@@ -63,11 +63,11 @@ if __name__ == '__main__':
         if determined_label!=label:
             count+=int(1)
     accuracy = (len(validation_set)-count)/len(validation_set)
-    print 'Validation set accuracy:%.4f'% (accuracy)
+    print('Validation set accuracy:%.4f'% (accuracy))
     f = open('maxEnt_classifier.pickle', 'wb')
     pickle.dump(classifier, f)
     f.close()
-    print '\nPredicting for test data'
+    print('\nPredicting for test data')
     test_data = get_data_from_file(test_csv_file, isTrain=False)
     test_set_formatted = [(list_to_dict(element[0]), element[1]) for element in test_data]
     tweet_id = int(0)
@@ -78,5 +78,5 @@ if __name__ == '__main__':
         results.append((str(tweet_id), label))
         tweet_id += int(1)
     save_results_to_csv(results, 'maxent.csv')
-    print '\nSaved to maxent.csv'
+    print('\nSaved to maxent.csv')
     
